@@ -1,5 +1,5 @@
 class UserDetail:
-    def __init__(self, name, dob, city):
+    def __init__(self, name, dob, Secret_key):
         self.name = name
         self.dob = dob
-        self.city = city
+        self.Secret_key = Secret_key

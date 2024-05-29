@@ -1,8 +1,5 @@
 import sqlite3
 
-import streamlit
-import pandas as pd
-
 from UserDetail import UserDetail
 
 
@@ -21,7 +18,7 @@ class Database:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
                 dob DATE,
-                city TEXT
+                Secret_key TEXT
             )
         ''')
         self.conn.commit()
@@ -30,8 +27,8 @@ class Database:
     def insert_user_detail(self, userDetail):
         c = self.conn.cursor()
         c.execute('''
-                    INSERT INTO user_detail (name, dob, city) VALUES (?, ?, ?)
-                ''', (userDetail.name, userDetail.dob, userDetail.city))
+                    INSERT INTO user_detail (name, dob, Secret_key) VALUES (?, ?, ?)
+                ''', (userDetail.name, userDetail.dob, userDetail.Secret_key))
         self.conn.commit()
         user_id = c.lastrowid
         c.close()
@@ -51,8 +48,8 @@ class Database:
 
         name = row[1]
         dob = row[2]
-        city = row[3]
+        Secret_key = row[3]
 
-        obj = UserDetail(name, dob, city)
+        obj = UserDetail(name, dob, Secret_key)
 
         return obj

@@ -21,20 +21,20 @@ def register():
         min_date = datetime.datetime(1900, 1, 1)
         max_date = datetime.datetime.today()
         dob = form.date_input("DOB", min_value=min_date, max_value=max_date)
-        city = form.text_input("City")
+        Secret_key = form.text_input("Secret_Key")
         submit = form.form_submit_button("submit")
         if submit:
-            if not name or not dob or not city:
-                st.error("Please enter your name, DOB and city")
+            if not name or not dob or not Secret_key:
+                st.error("Please enter your name, DOB and Secret_key")
             else:
                 st.success("registered successfully")
-                user_id = insert_user_detail(city, dob, name)
+                user_id = insert_user_detail(Secret_key, dob, name)
                 know_user_dir = "./known_user/"
                 image.save_image(picture, know_user_dir, str(user_id))
 
 
-def insert_user_detail(city, dob, name):
-    user_detail = UserDetail(name, dob, city)
+def insert_user_detail(Secret_key, dob, name):
+    user_detail = UserDetail(name, dob, Secret_key)
     db = Database()
     user_id = db.insert_user_detail(user_detail)
     return user_id
