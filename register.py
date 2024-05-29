@@ -32,7 +32,6 @@ def register():
                 know_user_dir = "./known_user/"
                 image.save_image(picture, know_user_dir, str(user_id))
 
-
 def insert_user_detail(Secret_key, dob, name):
     user_detail = UserDetail(name, dob, Secret_key)
     db = Database()

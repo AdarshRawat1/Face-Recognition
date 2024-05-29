@@ -53,3 +53,10 @@ class Database:
         obj = UserDetail(name, dob, Secret_key)
 
         return obj
+    def get_all_user_ids(self):
+        c = self.conn.cursor()
+        c.execute('SELECT id FROM user_detail')
+        user_ids = [row[0] for row in c.fetchall()]
+        c.close()
+        return user_ids
+
